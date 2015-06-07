@@ -17,10 +17,12 @@ export BUILD_DOCKER_REPO=infradash
 # If checking out code -- update this in the branch
 export BUILD_SRC_GIT_REPO=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
 export BUILD_SRC_GIT_VERSION=$CIRCLE_BRANCH
+export BUILD_SRC_BUILD=$CIRCLE_BUILD_NUM
+
 
 # The build directory -- where Dockerfile lives.
 # This assumes the convention of branch name matching the directory (e.g. postgres/9.3)
-export BUILD_DIR=$CIRCLE_BRANCH
+export BUILD_DIR=$(dirname $0)/$CIRCLE_BRANCH
 
 # Branch name is the product (e.g. postgres/9.3)
 export BUILD_PRODUCT=$(echo $BUILD_DIR | awk -F "/" '{print $1}')

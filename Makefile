@@ -42,6 +42,7 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
 get-dasher:
+	echo "Getting dasher from $(DASHER_URL); copy to $(BUILD_DIR)"
 	wget $(DASHER_URL) && chmod a+x dasher && cp dasher $(BUILD_DIR) && sudo cp dasher /usr/bin
 
 TUNNEL:=`cat ./$(CIRCLE_BUILD_NUM).port`
@@ -51,7 +52,7 @@ docker-login:
 	dasher -zookeeper=localhost:$(TUNNEL) -readpath=$(BUILD_DOCKER_LOGIN) -read registry > ~/.dockercfg
 
 pre-image-build:
-	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) ImageBuild=$(BUILD_IMAGE_BUILD), Build label is $(BUILD_LABEL)"
+	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) Image=$(BUILD_DOCKER_IMAGE), Build label is $(BUILD_LABEL)"
 
 build-push-image:
 	echo "Building and Pushing $(BUILD_DOCKER_IMAGE)"

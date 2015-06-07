@@ -1,5 +1,12 @@
 # Postgres 9.3
 
+###############
+ADD dasher /usr/local/bin/
+ADD VERSION /etc/postgresql/
+ADD MANIFEST /etc/postgresql/
+ADD DASHER /etc/postgresql/
+###############
+
 # Pull base image.
 FROM ubuntu:14.04
 
@@ -26,10 +33,7 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 # And add ``listen_addresses`` to ``/etc/postgresql/9.3/main/postgresql.conf``
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
-ADD valet /usr/local/bin/
 ADD postgres.sh /usr/local/bin/
-ADD VERSION /etc/postgresql/
-ADD MANIFEST /etc/postgresql/
 
 # Expose the PostgreSQL port
 EXPOSE 5432

@@ -1,6 +1,13 @@
 # Haproxy
 # See https://github.com/haproxyinc/docker-haproxy/blob/master/Dockerfile
 
+###############
+ADD dasher /usr/local/bin/
+ADD VERSION /etc/haproxy/
+ADD MANIFEST /etc/haproxy/
+ADD DASHER /etc/haproxy/
+###############
+
 # Pull base image.
 FROM ubuntu:14.04
 
@@ -14,10 +21,7 @@ RUN tar -zxvf haproxy-1.5.1.tar.gz
 RUN cd haproxy-1.5.1 && make TARGET=generic && make install
 RUN touch /var/run/haproxy.pid
 
-ADD valet /usr/local/bin/
 ADD haproxy.sh /usr/local/bin/
-ADD VERSION /etc/haproxy/
-ADD MANIFEST /etc/haproxy/
 ADD haproxy.cfg /etc/haproxy/
 
 EXPOSE 1936

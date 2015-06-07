@@ -24,11 +24,11 @@ dependencies:
   pre:
     - ./env.sh make pre-image-build
     
-    # Get Valet
-    - make get-valet && cd valet && source dev/env.sh && make godep && sudo cp bin/valet /usr/local/bin
+    # Get Dasher
+    - ./env.sh make get-dasher
 
-    # Make sure valet is available to be packaged into the docker image:
-    - ./env.sh cp valet/bin/valet $BUILD_PRODUCT
+    # Make sure dasher is available to be packaged into the docker image:
+    - ./env.sh cp dasher $BUILD_DIR
 
     # Start SSH Tunnel
     - ./env.sh make start-tunnel
@@ -42,7 +42,7 @@ dependencies:
   override:
 
     # Build the Docker image
-    - ./env.sh cd $BUILD_PRODUCT && ../env.sh make push
+    - ./env.sh cd $BUILD_DIR && ../env.sh make push
 
   post:
 

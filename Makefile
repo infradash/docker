@@ -41,20 +41,20 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O check $(BUILD_BASTION_LOGIN)
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
-get-valet:
-	git clone --branch $(VALET_VERSION) git@github.com:BlinkerGit/valet.git valet
+get-dasher:
+	wget $(DASHER_URL) && chmod a+x dasher
 
 TUNNEL:=`cat ./$(CIRCLE_BUILD_NUM).port`
 
 # Login to Docker using credentials in Zookeeper
 docker-login:
-	valet -zookeeper=localhost:$(TUNNEL) -readpath=$(BUILD_DOCKER_LOGIN) -read registry > ~/.dockercfg
+	dasher -zookeeper=localhost:$(TUNNEL) -readpath=$(BUILD_DOCKER_LOGIN) -read registry > ~/.dockercfg
 
 pre-image-build:
 	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) ImageBuild=$(BUILD_IMAGE_BUILD), Build label is $(BUILD_LABEL)"
 
 begin-release:
-	valet -logtostderr -zookeeper=localhost:$(TUNNEL) \
+	dasher -logtostderr -zookeeper=localhost:$(TUNNEL) \
 	-domain=$(BUILD_RELEASE_DOMAIN) \
 	-service=$(BUILD_PRODUCT) \
 	-version=$(BUILD_SRC_GIT_VERSION) \
@@ -64,7 +64,7 @@ begin-release:
 	registry
 
 commit-release:
-	valet -logtostderr -zookeeper=localhost:$(TUNNEL) \
+	dasher -logtostderr -zookeeper=localhost:$(TUNNEL) \
 	-domain=$(BUILD_RELEASE_DOMAIN) \
 	-service=$(BUILD_PRODUCT) \
 	-version=$(BUILD_SRC_GIT_VERSION) \

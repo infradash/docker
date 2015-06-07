@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export DASHER_URL=http://infradash.github.io/public/dasher/latest/bin/dasher
+
 # Domain in the registry for the images
 export BUILD_RELEASE_DOMAIN=docker.infradash.com
 

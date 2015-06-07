@@ -39,7 +39,7 @@ dependencies:
   override:
 
     # Build the Docker image
-    - BASE=$PWD ./env.sh cd $BUILD_DIR && $BASE/env.sh make push
+    - export BASE=$PWD ./env.sh cd $BUILD_DIR && $BASE/env.sh make push
 
   post:
 

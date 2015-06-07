@@ -53,6 +53,10 @@ docker-login:
 pre-image-build:
 	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) ImageBuild=$(BUILD_IMAGE_BUILD), Build label is $(BUILD_LABEL)"
 
+build-push-image:
+	echo "Building and Pushing $(BUILD_DOCKER_IMAGE)"
+	cd $(BUILD_DIR) && make push
+
 begin-release:
 	dasher -logtostderr -zookeeper=localhost:$(TUNNEL) \
 	-domain=$(BUILD_RELEASE_DOMAIN) \

@@ -21,8 +21,8 @@ export BUILD_SRC_GIT_VERSION=$CIRCLE_BRANCH
 export BUILD_DIR=$CIRCLE_BRANCH
 
 # Branch name is the product (e.g. postgres/9.3)
-export BUILD_PRODUCT=$(echo $BUILD_DIR) | awk -F "/" '{print $1}')
-export PRODUCT_VERSION=$(echo $BUILD_DIR) | awk -F "/" '{print $2}')
+export BUILD_PRODUCT=$(echo $BUILD_DIR | awk -F "/" '{print $1}')
+export PRODUCT_VERSION=$(echo $BUILD_DIR | awk -F "/" '{print $2}')
 
 if [[ "$PRODUCT_VERSION" = "" ]]; then
     BUILD_LABEL=${CIRCLE_BUILD_NUM}

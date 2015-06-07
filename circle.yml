@@ -16,10 +16,6 @@ machine:
   hosts:
     circlehost: 127.0.0.1
 
-  # Add some environment variables
-  environment:
-    BASE: $PWD/docker
-
 ## Customize dependencies
 dependencies:
   pre:

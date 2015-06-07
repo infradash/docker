@@ -22,7 +22,7 @@ export BUILD_SRC_BUILD=$CIRCLE_BUILD_NUM
 
 # The build directory -- where Dockerfile lives.
 # This assumes the convention of branch name matching the directory (e.g. postgres/9.3)
-export BUILD_DIR=$(dirname $0)/$CIRCLE_BRANCH
+export BUILD_DIR=$CIRCLE_BRANCH
 
 # Branch name is the product (e.g. postgres/9.3)
 export BUILD_PRODUCT=$(echo $BUILD_DIR | awk -F "/" '{print $1}')
@@ -37,6 +37,9 @@ fi
 # The docker image to build, with tag:
 export BUILD_DOCKER_IMAGE=$BUILD_DOCKER_REPO/$BUILD_PRODUCT:$BUILD_LABEL
 export BUILD_META="repo=$BUILD_SRC_GIT_REPO,version=$BUILD_SRC_GIT_VERSION,build=$BUILD_LABEL,image=$BUILD_DOCKER_IMAGE"
+
+# Make it a full path
+export BUILD_DIR=$(dirname $0)/$BUILD_DIR
 
 env | sort | grep BUILD_
 

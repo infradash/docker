@@ -42,7 +42,7 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
 get-dasher:
-	wget $(DASHER_URL) && chmod a+x dasher
+	wget $(DASHER_URL) && chmod a+x dasher && cp dasher $(BUILD_DIR)
 
 TUNNEL:=`cat ./$(CIRCLE_BUILD_NUM).port`
 

@@ -27,9 +27,6 @@ dependencies:
     # Get Dasher
     - ./env.sh make get-dasher
 
-    # Make sure dasher is available to be packaged into the docker image:
-    - ./env.sh cp dasher $BUILD_DIR
-
     # Start SSH Tunnel
     - ./env.sh make start-tunnel
 

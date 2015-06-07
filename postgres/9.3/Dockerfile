@@ -1,15 +1,9 @@
 # Postgres 9.3
 
-###############
-ADD dasher /usr/local/bin/
-ADD VERSION /etc/postgresql/
-ADD MANIFEST /etc/postgresql/
-ADD GET_DASHER /etc/postgresql/
-###############
-
 # Pull base image.
 FROM ubuntu:14.04
 
+# Install postgres
 # Add PostgreSQL's repository. It contains the most recent stable release of PostgreSQL, ``9.3``.
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
@@ -33,7 +27,15 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 # And add ``listen_addresses`` to ``/etc/postgresql/9.3/main/postgresql.conf``
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
+
+######################################
+ADD VERSION /etc/postgresql/
+ADD MANIFEST /etc/postgresql/
+ADD GET_DASHER /etc/postgresql/
+ADD dasher /usr/local/bin/
+
 ADD postgres.sh /usr/local/bin/
+
 
 # Expose the PostgreSQL port
 EXPOSE 5432

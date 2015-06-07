@@ -5,7 +5,7 @@
 ADD dasher /usr/local/bin/
 ADD VERSION /etc/haproxy/
 ADD MANIFEST /etc/haproxy/
-ADD DASHER /etc/haproxy/
+ADD GET_DASHER /etc/haproxy/
 ###############
 
 # Pull base image.

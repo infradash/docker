@@ -4,7 +4,7 @@
 ADD dasher /usr/local/bin/
 ADD VERSION /etc/postgresql/
 ADD MANIFEST /etc/postgresql/
-ADD DASHER /etc/postgresql/
+ADD GET_DASHER /etc/postgresql/
 ###############
 
 # Pull base image.

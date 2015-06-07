@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION=$(cat ./VERSION)
-DASHER=$(cat ./DASHER)
+DASHER=$(cat ./GET_DASHER)
 SERVICE=${SERVICE:-`echo $0 | sed -e 's/.sh//g' -e 's/.\///g'`}
 START_RESTART="/usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf"
 START_RESTART="service postgresql restart"

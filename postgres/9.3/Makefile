@@ -2,7 +2,7 @@ gen-tag:
 	echo "Build Meta = $(BUILD_META)"
 	echo $(BUILD_META) > ./MANIFEST
 	echo "Dasher = $(DASHER_URL)"
-	echo $(DASHER_URL) > ./DASHER
+	echo $(DASHER_URL) > ./GET_DASHER
 
 dockerfile: gen-tag
 	echo "$(BUILD_SRC_GIT_VERSION)" > ./VERSION

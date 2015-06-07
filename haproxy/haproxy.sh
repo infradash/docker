@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION=$(cat ./VERSION)
-DASHER=$(cat ./DASHER)
+DASHER=$(cat ./GET_DASHER)
 SERVICE=${SERVICE:-`echo $0 | sed -e 's/.sh//g' -e 's/.\///g'`}
 START_RESTART="/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)"
 

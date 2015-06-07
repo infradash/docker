@@ -1,0 +1,55 @@
+## Circle CI configuration
+general:
+  branches:
+    ignore:
+      - master
+      - gh-pages
+
+machine:
+  services:
+    - docker
+
+  timezone:
+    America/Los_Angeles
+
+  # Override /etc/hosts
+  hosts:
+    circlehost: 127.0.0.1
+
+  # Add some environment variables
+  environment:
+
+## Customize dependencies
+dependencies:
+  pre:
+    - ./env.sh make pre-image-build
+    
+    # Get Valet
+    - make get-valet && cd valet && source dev/env.sh && make godep && sudo cp bin/valet /usr/local/bin
+
+    # Make sure valet is available to be packaged into the docker image:
+    - ./env.sh cp valet/bin/valet $BUILD_PRODUCT
+
+    # Start SSH Tunnel
+    - ./env.sh make start-tunnel
+
+    # Set up Docker login
+    - ./env.sh make docker-login
+    
+    # Begin release
+    - ./env.sh make begin-release
+
+  override:
+
+    # Build the Docker image
+    - ./env.sh cd $BUILD_PRODUCT && ../env.sh make push
+
+  post:
+
+    # Commit the change to Registry
+    - ./env.sh make commit-release
+
+test:
+  override:
+    - echo "No tests."
+

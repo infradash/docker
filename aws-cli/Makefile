@@ -8,7 +8,7 @@ gen-tag:
 	ls -al
 
 dockerfile: gen-tag
-	chmod a+x ./nginx.sh
+	chmod a+x ./aws-cli.sh
 
 image: dockerfile
 	sudo docker build -t $(BUILD_DOCKER_IMAGE) .

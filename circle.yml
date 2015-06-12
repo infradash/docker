@@ -21,8 +21,8 @@ dependencies:
   pre:
     - ./env.sh make pre-image-build
     
-    # Get Dasher
-    - ./env.sh make get-dasher
+    # Get Dash
+    - ./env.sh make get-dash
 
     # Start SSH Tunnel
     - ./env.sh make start-tunnel

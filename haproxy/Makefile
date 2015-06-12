@@ -1,8 +1,8 @@
 gen-tag:
 	echo "Build Meta = $(BUILD_META)"
 	echo $(BUILD_META) > ./MANIFEST
-	echo "Dasher = $(DASHER_URL)"
-	echo $(DASHER_URL) > ./GET_DASHER
+	echo "Dasher = $(DASH_URL)"
+	echo $(DASH_URL) > ./GET_DASH
 
 dockerfile: gen-tag
 	echo "$(BUILD_SRC_GIT_VERSION)" > ./VERSION

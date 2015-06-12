@@ -41,15 +41,15 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O check $(BUILD_BASTION_LOGIN)
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
-get-dasher:
-	echo "Getting dasher from $(DASHER_URL); copy to $(BUILD_DIR)"
-	wget $(DASHER_URL) && chmod a+x dasher && cp dasher $(BUILD_DIR) && sudo cp dasher /usr/bin
+get-dash:
+	echo "Getting dash from $(DASH_URL); copy to $(BUILD_DIR)"
+	wget $(DASH_URL) && chmod a+x dash && cp dash $(BUILD_DIR) && sudo cp dash /usr/bin
 
 TUNNEL:=`cat ./$(CIRCLE_BUILD_NUM).port`
 
 # Login to Docker using credentials in Zookeeper
 docker-login:
-	dasher -zookeeper=localhost:$(TUNNEL) -readpath=$(BUILD_DOCKER_LOGIN) -read registry > ~/.dockercfg
+	dash -zookeeper=localhost:$(TUNNEL) -readpath=$(BUILD_DOCKER_LOGIN) -read registry > ~/.dockercfg
 
 pre-image-build:
 	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) Image=$(BUILD_DOCKER_IMAGE), Build label is $(BUILD_LABEL)"
@@ -59,7 +59,7 @@ build-push-image:
 	cd $(BUILD_DIR) && make push
 
 begin-release:
-	dasher -logtostderr -zookeeper=localhost:$(TUNNEL) \
+	dash -logtostderr -zookeeper=localhost:$(TUNNEL) \
 	-domain=$(BUILD_RELEASE_DOMAIN) \
 	-service=$(BUILD_PRODUCT) \
 	-version=$(BUILD_SRC_GIT_VERSION) \
@@ -69,7 +69,7 @@ begin-release:
 	registry
 
 commit-release:
-	dasher -logtostderr -zookeeper=localhost:$(TUNNEL) \
+	dash -logtostderr -zookeeper=localhost:$(TUNNEL) \
 	-domain=$(BUILD_RELEASE_DOMAIN) \
 	-service=$(BUILD_PRODUCT) \
 	-version=$(BUILD_SRC_GIT_VERSION) \

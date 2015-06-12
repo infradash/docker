@@ -31,8 +31,8 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
 ######################################
 ADD VERSION /etc/postgresql/
 ADD MANIFEST /etc/postgresql/
-ADD GET_DASHER /etc/postgresql/
-ADD dasher /usr/local/bin/
+ADD GET_DASH /etc/postgresql/
+ADD dash /usr/local/bin/
 
 ADD postgres.sh /usr/local/bin/
 

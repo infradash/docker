@@ -17,8 +17,8 @@ RUN touch /var/run/haproxy.pid
 ####################################
 ADD VERSION /etc/haproxy/
 ADD MANIFEST /etc/haproxy/
-ADD GET_DASHER /etc/haproxy/
-ADD dasher /usr/local/bin/
+ADD GET_DASH /etc/haproxy/
+ADD dash /usr/local/bin/
 
 ADD haproxy.sh /usr/local/bin/
 ADD haproxy.cfg /etc/haproxy/

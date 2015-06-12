@@ -1,14 +1,14 @@
 #!/bin/bash
 
 VERSION=$(cat ./VERSION)
-DASHER=$(cat ./GET_DASHER)
+DASH=$(cat ./GET_DASH)
 START_RESTART="service nginx restart"
 
 # If command line is UPGRADE RUN ....  or UPGRADE -option=... then pull down the latest build of valet.
 if [[ $1 == "UPGRADE" ]]; then
     shift;
-    wget $DASHER
-    chmod a+x dasher && sudo cp dasher /usr/local/bin
+    wget $DASH
+    chmod a+x dash && sudo cp dash /usr/local/bin
 fi
 
 if [[ $1 == "RUN" ]]; then
@@ -19,5 +19,5 @@ if [[ $1 == "RUN" ]]; then
 else
     OPTIONS=$@
     echo "Entrypoint with options: [ $OPTIONS ]"
-    dasher -version=$VERSION -service=nginx -daemon -no_source_env -logtostderr $OPTIONS exec $START_RESTART
+    dash -version=$VERSION -service=nginx -daemon -no_source_env -logtostderr $OPTIONS exec $START_RESTART
 fi

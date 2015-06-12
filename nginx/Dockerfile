@@ -15,8 +15,8 @@ RUN apt-get install -y nginx
 ######################################
 ADD VERSION .
 ADD MANIFEST .
-ADD GET_DASHER .
-ADD dasher /usr/local/bin/
+ADD GET_DASH .
+ADD dash /usr/local/bin/
 
 RUN mkdir -p /etc/nginx/html/
 ADD error.html /etc/nginx/html/

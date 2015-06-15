@@ -8,7 +8,7 @@ WORKDIR /home/mosquitto
 ####################################
 COPY VERSION .
 COPY MANIFEST .
-COPY DASH_* .
+COPY DASH_* ./
 COPY *.sh dash /usr/local/bin/
 ####################################
 

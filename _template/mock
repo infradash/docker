@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "args ==> $@"
+env | sort | grep -e '^DASH_'
+

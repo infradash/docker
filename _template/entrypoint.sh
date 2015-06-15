@@ -22,7 +22,7 @@
 # 2. PATH takes precedence.  If not specified, paths are derived based on domain, service, and version
 : ${DASH_PATH:=$(cat /etc/dash/DASH_PATH)}
 : ${DASH_DOMAIN:=$(cat /etc/dash/DASH_DOMAIN)}
-: ${DASH_SERVICE:=$(echo $0 | sed -e 's/.sh//g' -e 's/.\///g')}
+: ${DASH_SERVICE:=$(basename $0 | sed -e 's/.sh//g')}
 : ${DASH_VERSION:=$(cat /etc/dash/DASH_VERSION)}
 
 

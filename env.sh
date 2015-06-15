@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# External depedencies
+: ${BUILD_USERNAME:=$CIRCLE_PROJECT_USERNAME}
+: ${BUILD_PROJECT:=$CIRCLE_PROJECT_REPONAME}
+: ${BUILD_BRANCH:=$CIRCLE_BRANCH}
+: ${BUILD_NUM:=$CIRCLE_BUILD_NUM}
+
 # Domain in the registry for the images
 export BUILD_RELEASE_DOMAIN=docker.infradash.com
 
@@ -13,23 +19,23 @@ export BUILD_BASTION_LOGIN=ubuntu@bastion.qoriolabs.com
 export BUILD_DOCKER_REPO=infradash
 
 # If checking out code -- update this in the branch
-export BUILD_SRC_GIT_REPO=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-export BUILD_SRC_GIT_VERSION=$CIRCLE_BRANCH
-export BUILD_SRC_BUILD=$CIRCLE_BUILD_NUM
+export BUILD_SRC_GIT_REPO=$BUILD_USERNAME/$BUILD_PROJECT
+export BUILD_SRC_GIT_VERSION=$BUILD_BRANCH
+export BUILD_SRC_BUILD=$BUILD_NUM
 
 
 # The build directory -- where Dockerfile lives.
 # This assumes the convention of branch name matching the directory (e.g. postgres/9.3)
-export BUILD_DIR=$CIRCLE_BRANCH
+export BUILD_DIR=$BUILD_BRANCH
 
 # Branch name is the product (e.g. postgres/9.3)
 export BUILD_PRODUCT=$(echo $BUILD_DIR | awk -F "/" '{print $1}')
 export PRODUCT_VERSION=$(echo $BUILD_DIR | awk -F "/" '{print $2}')
 
 if [[ "$PRODUCT_VERSION" = "" ]]; then
-    BUILD_LABEL=${CIRCLE_BUILD_NUM}
+    BUILD_LABEL=${BUILD_NUM}
 else
-    BUILD_LABEL=${PRODUCT_VERSION}-${CIRCLE_BUILD_NUM}
+    BUILD_LABEL=${PRODUCT_VERSION}-${BUILD_NUM}
 fi
 
 # The docker image to build, with tag:

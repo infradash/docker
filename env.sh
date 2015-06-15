@@ -12,7 +12,7 @@ export BUILD_RELEASE_DOMAIN=docker.infradash.com
 # Docker hub login information
 export BUILD_DOCKER_LOGIN=/docker.infradash.com/.dockercfg
 
-export ZOOKEEPER_HOST=zk01.qor.io:2181
+export DASH_ZK_HOSTS=zk01.qor.io:2181
 export BUILD_BASTION_LOGIN=ubuntu@bastion.qoriolabs.com 
 
 # Docker hub account

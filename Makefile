@@ -1,5 +1,6 @@
 .PHONY: _pwd_prompt dec enc
 
+DASH_URL:=$(cat ${BUILD_DIR}/DASH_BINARY)
 TUNNEL_PORT:= $(shell bash -c 'echo $$(($$RANDOM + 5000))')
 
 # 'private' task for echoing instructions
@@ -42,7 +43,6 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
 get-dash:
-	DASH_URL:=$(cat ${BUILD_DIR}/DASH_BINARY)
 	echo "Getting dash from $(DASH_URL); copy to $(BUILD_DIR)"
 	wget $(DASH_URL) && chmod a+x dash && cp dash $(BUILD_DIR) && sudo cp dash /usr/bin
 

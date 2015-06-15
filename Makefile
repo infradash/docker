@@ -24,7 +24,7 @@ docker-login:
 pre-image-build:
 	echo "Releasing Product $(BUILD_PRODUCT) from $(BUILD_SRC_GIT_REPO) Version=$(BUILD_SRC_GIT_VERSION) Build=$(BUILD_SRC_BUILD) Image=$(BUILD_DOCKER_IMAGE), Build label is $(BUILD_LABEL)"
 
-build-push-image:
+build-push-image: get-dash
 	echo "Building and Pushing $(BUILD_DOCKER_IMAGE)"
 	cd $(BUILD_DIR) && make push
 

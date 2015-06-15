@@ -10,7 +10,7 @@ RUN mkdir -p /etc/dash/
 COPY MANIFEST /etc/dash/
 COPY DASH_* /etc/dash/
 COPY dash /usr/local/bin/
-COPY mqtt.sh /usr/local/bin/
+COPY *.sh /usr/local/bin/
 ####################################
 
 RUN apt-get -y update && apt-get -y upgrade

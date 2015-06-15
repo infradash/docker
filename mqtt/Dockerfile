@@ -6,14 +6,14 @@ FROM ubuntu:14.04
 WORKDIR /root
 
 ####################################
-COPY VERSION .
-COPY MANIFEST .
-COPY DASH_AUTH_TOKEN .
-COPY DASH_BINARY .
-COPY DASH_CMD .
-COPY DASH_OPTIONS .
-COPY dash /usr/local/bin/
-COPY mqtt.sh /usr/local/bin/
+ADD VERSION .
+ADD MANIFEST .
+ADD DASH_AUTH_TOKEN .
+ADD DASH_BINARY .
+ADD DASH_CMD .
+ADD DASH_OPTIONS .
+ADD dash /usr/local/bin/
+ADD mqtt.sh /usr/local/bin/
 ####################################
 
 

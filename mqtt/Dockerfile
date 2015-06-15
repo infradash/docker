@@ -3,6 +3,16 @@
 # Pull base image.
 FROM ubuntu:14.04
 
+WORKDIR .
+
+####################################
+RUN mkdir -p /etc/dash/
+COPY MANIFEST /etc/dash/
+COPY DASH_* /etc/dash/
+COPY dash /usr/local/bin/
+COPY mqtt.sh /usr/local/bin/
+####################################
+
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install build-essential libssl-dev uuid-dev wget libc-ares-dev
 
@@ -11,19 +21,7 @@ RUN tar xvfz mosquitto-1.4.2.tar.gz && cd mosquitto-1.4.2 && make install
 RUN /sbin/ldconfig
 
 RUN useradd -d /home/mosquitto -m mosquitto
-WORKDIR /home/mosquitto
 
-####################################
-ADD VERSION .
-ADD MANIFEST .
-ADD DASH_AUTH_TOKEN .
-ADD DASH_BINARY .
-ADD DASH_CMD .
-ADD DASH_OPTIONS .
-ADD dash /usr/local/bin/
-ADD mqtt.sh /usr/local/bin/
-####################################
-
-EXPOSE 1883
+EXPOSE 1883 25658
 
 ENTRYPOINT [ "mqtt.sh" ]

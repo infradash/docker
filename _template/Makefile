@@ -5,7 +5,7 @@ gen-tag:
 	echo "Version = $(BUILD_SRC_GIT_VERSION)"
 	echo "Build Meta = $(BUILD_META)"
 	echo "$(BUILD_META)" > ./MANIFEST
-	echo "$(BUILD_SRC_GIT_VERSION)" > ./VERSION
+	echo "$(BUILD_SRC_GIT_VERSION)" > ./DASH_VERSION
 
 # Copies special files pointed to by symlinks so Docker build can see the files.
 dockerfile: gen-tag

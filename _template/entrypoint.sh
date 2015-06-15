@@ -5,14 +5,14 @@
 # Template for Docker image ENTRYPOINT
 #
 
-: ${DASH_CMD:=$(cat ./DASH_CMD)}  # Cmd to fork and execute
-: ${DASH_BINARY:=$(cat ./DASH_BINARY)} # Dash binary url
-: ${DASH_OPTIONS:=$(cat ./DASH_OPTIONS)}
-: ${DASH_AUTH_TOKEN:=$(cat ./DASH_AUTH_TOKEN)}
+: ${DASH_CMD:=$(cat /etc/dash/DASH_CMD)}  # Cmd to fork and execute
+: ${DASH_BINARY:=$(cat /etc/dash/DASH_BINARY)} # Dash binary url
+: ${DASH_OPTIONS:=$(cat /etc/dash/DASH_OPTIONS)}
+: ${DASH_AUTH_TOKEN:=$(cat /etc/dash/DASH_AUTH_TOKEN)}
+: ${DASH_VERSION:=$(cat /etc/dash/DASH_VERSION)}
 
 : ${DASH_CONFIG_URL:=""}
 : ${DASH_DOMAIN:=""}
-: ${DASH_VERSION:=$(cat ./VERSION)}
 : ${DASH_SERVICE:=$(echo $0 | sed -e 's/.sh//g' -e 's/.\///g')}
 : ${DASH_PATH:=""}
 

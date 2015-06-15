@@ -9,7 +9,10 @@ WORKDIR /home/mosquitto
 ####################################
 COPY VERSION .
 COPY MANIFEST .
-COPY DASH_* ./
+COPY DASH_AUTH_TOKEN ./
+COPY DASH_BINARY ./
+COPY DASH_CMD ./
+COPY DASH_OPTIONS ./
 COPY dash /usr/local/bin/
 
 COPY mqtt.sh /usr/local/bin/

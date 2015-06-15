@@ -3,6 +3,16 @@
 # Pull base image.
 FROM ubuntu:14.04
 
+WORKDIR .
+
+####################################
+RUN mkdir -p /etc/dash/
+COPY MANIFEST /etc/dash/
+COPY DASH_* /etc/dash/
+COPY dash /usr/local/bin/
+COPY *.sh /usr/local/bin/
+####################################
+
 RUN apt-get update -y
 
 # Base
@@ -14,15 +24,6 @@ RUN unzip awscli-bundle.zip
 RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 RUN./awscli-bundle/install -h
 
-ADD aws-cli.sh /usr/local/bin/
-
-######################################
-ADD VERSION .
-ADD MANIFEST .
-ADD GET_DASH .
-ADD dash /usr/local/bin/
-
-WORKDIR .
 
 VOLUME [ "/var/log/" ]
 

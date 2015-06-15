@@ -10,7 +10,7 @@ gen-tag:
 # Copies special files pointed to by symlinks so Docker build can see the files.
 dockerfile: gen-tag
 	for i in `ls *.sh`; do cp $$i .tmp ; mv .tmp $$i ; done
-	for i in `ls _DASH_*`; do cp $$i .tmp ; mv .tmp $$i ; done
+	for i in `ls DASH_*`; do cp $$i .tmp ; mv .tmp $$i ; done
 
 
 image: dockerfile

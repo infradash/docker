@@ -9,7 +9,10 @@ WORKDIR /home/mosquitto
 COPY VERSION .
 COPY MANIFEST .
 COPY DASH_* ./
-COPY *.sh dash /usr/local/bin/
+COPY *.sh /usr/local/bin/
+COPY dash /usr/local/bin/
+RUN ls -al /usr/local/bin/
+RUN ls -al ./
 ####################################
 
 RUN apt-get -y update && apt-get -y upgrade

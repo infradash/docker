@@ -8,8 +8,6 @@ gen-tag:
 	echo "$(BUILD_SRC_GIT_VERSION)" > ./VERSION
 
 dockerfile: gen-tag
-	echo "$(BUILD_SRC_GIT_VERSION)" > ./VERSION
-	chmod a+x ./$(current_dir).sh
 
 image: dockerfile
 	docker build -t $(BUILD_DOCKER_IMAGE) .

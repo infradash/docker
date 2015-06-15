@@ -1,9 +1,11 @@
 all:
 
-TUNNEL_PORT:=$(shell bash -c 'echo $$(($$RANDOM + 5000))')
+TUNNEL_PORT:=21810 # $(shell bash -c 'echo $$(($$RANDOM + 5000))')
 start-tunnel:
 	ssh -L 127.0.0.1:$(TUNNEL_PORT):$(ZOOKEEPER_HOST) -fNM -S ./$(CIRCLE_BUILD_NUM).pid $(BUILD_BASTION_LOGIN)
 	echo "$(TUNNEL_PORT)" > $(CIRCLE_BUILD_NUM).port
+	echo "Sleeping while tunnel starts up."
+	sleep 5
 
 stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O check $(BUILD_BASTION_LOGIN)

@@ -9,11 +9,11 @@ WORKDIR /home/mosquitto
 COPY VERSION .
 COPY MANIFEST .
 COPY DASH_* ./
-COPY *.sh /usr/local/bin/
 COPY dash /usr/local/bin/
-RUN ls -al /usr/local/bin/
-RUN ls -al ./
+
+COPY mqtt.sh /usr/local/bin/
 ####################################
+
 
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install build-essential libssl-dev uuid-dev wget libc-ares-dev

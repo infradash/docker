@@ -1,8 +1,5 @@
 .PHONY: _pwd_prompt dec enc
 
-DASH_URL:=$(cat ${BUILD_DIR}/DASH_BINARY)
-TUNNEL_PORT:= $(shell bash -c 'echo $$(($$RANDOM + 5000))')
-
 # 'private' task for echoing instructions
 _pwd_prompt: mk_dirs
 
@@ -35,6 +32,7 @@ encrypt: _pwd_prompt
 	echo "Encrypted files are in encrypt/`basename $${src}`"
 
 start-tunnel:
+	TUNNEL_PORT=$(shell bash -c 'echo $$(($$RANDOM + 5000))')
 	ssh -L 127.0.0.1:$(TUNNEL_PORT):$(ZOOKEEPER_HOST) -fNM -S ./$(CIRCLE_BUILD_NUM).pid $(BUILD_BASTION_LOGIN)
 	echo "$(TUNNEL_PORT)" > $(CIRCLE_BUILD_NUM).port
 
@@ -43,6 +41,7 @@ stop-tunnel:
 	ssh -S ./$(CIRCLE_BUILD_NUM).pid -O exit $(BUILD_BASTION_LOGIN)
 
 get-dash:
+	DASH_URL=`cat $(BUILD_DIR)/DASH_BINARY`
 	echo "Getting dash from $(DASH_URL); copy to $(BUILD_DIR)"
 	wget $(DASH_URL) && chmod a+x dash && cp dash $(BUILD_DIR) && sudo cp dash /usr/bin
 

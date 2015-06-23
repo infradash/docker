@@ -1,7 +1,7 @@
 upstream backend {
-{{range .HostPortList}}
-	 server {{.Host}}:{{.Port}};
-{{end}}
+  {{range containers "/{{.Domain}}/{{.Service}}/live" "3000"}}
+    server {{.Host}}:{{.Port}};
+  {{end}}
 }
 
 server {
@@ -9,14 +9,14 @@ server {
        listen 443;
 
        # TODO - implement the 'key' directive to load value from env
-       server_name *.{{key "env://domain/nginx/env/DOMAIN"}};
+       server_name *.{{inline "env://{{.Domain}}/{{.Service}}/env/DOMAIN"}};
 
        # Turn off server information in response headers - Per security audit recommendation.
        server_tokens off;
 
        ssl on;
-       ssl_certificate {{file "env:///domain/ssl/domain.cert" "/etc/nginx/"}};
-       ssl_certificate_key {{file "env:///domain/ssl/domain.key" "/etc/nginx"}};
+       ssl_certificate {{file "env:///{{.Domain}}/configs/ssl.cert" "/etc/nginx/"}};
+       ssl_certificate_key {{file "env:///{{.Domain}}/configs/ssl.key" "/etc/nginx"}};
 
        # Turn off SSLv3 - Per security audit recommendation.
        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;

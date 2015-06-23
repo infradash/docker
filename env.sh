@@ -6,13 +6,14 @@
 : ${BUILD_BRANCH:=$CIRCLE_BRANCH}
 : ${BUILD_NUM:=$CIRCLE_BUILD_NUM}
 
+export DASH_ZK_HOSTS=zk01.qor.io:2181
+
 # Domain in the registry for the images
 export BUILD_RELEASE_DOMAIN=docker.infradash.com
 
 # Docker hub login information
 export BUILD_DOCKER_LOGIN=/docker.infradash.com/.dockercfg
 
-export ZOOKEEPER_HOST=zk01.qor.io:2181
 export BUILD_BASTION_LOGIN=ubuntu@bastion.qoriolabs.com 
 
 # Docker hub account

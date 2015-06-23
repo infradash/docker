@@ -7,15 +7,15 @@ FROM ubuntu:14.04
 WORKDIR .
 
 ####################################
-COPY VERSION .
-COPY MANIFEST .
-COPY DASH_* .
-COPY *.sh dash /usr/local/bin/
+RUN mkdir -p /etc/dash/
+COPY MANIFEST /etc/dash/
+COPY DASH_* /etc/dash/
+COPY dash /usr/local/bin/
+COPY *.sh /usr/local/bin/
 ####################################
 
 RUN mkdir -p /etc/nginx/html/
 COPY error.html /etc/nginx/html/
-
 
 ####################################
 

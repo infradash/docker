@@ -19,8 +19,8 @@ RUN apt-get install -y software-properties-common git-core wget
 # Java
 RUN add-apt-repository ppa:webupd8team/java -y
 RUN apt-get update
-RUN apt-get install oracle-java8-installer
-RUN apt-get install oracle-java8-set-default
+RUN apt-get install -y oracle-java8-installer
+RUN apt-get install -y oracle-java8-set-default
 
 # Zookeeper
 COPY install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6

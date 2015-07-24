@@ -21,11 +21,11 @@ RUN apt-get install -y --no-install-recommends openjdk-7-jdk
 RUN java -version
 
 # Zookeeper
-ADD install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
+ADD zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
 RUN cd /usr/local && ln -s zookeeper-3.4.6 zookeeper
 
 # Exhibitor
-ADD install/exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
+ADD exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
 RUN cd /usr/local && ln -s exhibitor-1.5.1 exhibitor
 
 # Supervisord

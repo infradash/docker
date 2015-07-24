@@ -18,7 +18,6 @@ RUN apt-get install -y software-properties-common git-core wget
 
 # Java
 RUN add-apt-repository ppa:openjdk-r/ppa
-RUN apt-get update
 RUN apt-get install -y git-core wget
 RUN apt-get install -y openjdk-8-jdk
 RUN update-alternatives --config java

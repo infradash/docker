@@ -17,10 +17,12 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common git-core wget
 
 # Java
-RUN add-apt-repository ppa:openjdk-r/ppa
-RUN apt-get install -y git-core wget
-RUN apt-get install -y openjdk-8-jdk
-RUN update-alternatives --config java
+#RUN add-apt-repository ppa:openjdk-r/ppa
+#RUN apt-get install -y git-core wget
+#RUN apt-get install -y openjdk-8-jdk
+#RUN update-alternatives --config java
+RUN apt-get install -y --no-install-recommends openjdk-7-jdk
+RUN java -version
 
 # Zookeeper
 COPY install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6

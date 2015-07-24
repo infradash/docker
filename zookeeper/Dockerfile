@@ -17,19 +17,15 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common git-core wget
 
 # Java
-#RUN add-apt-repository ppa:openjdk-r/ppa
-#RUN apt-get install -y git-core wget
-#RUN apt-get install -y openjdk-8-jdk
-#RUN update-alternatives --config java
 RUN apt-get install -y --no-install-recommends openjdk-7-jdk
 RUN java -version
 
 # Zookeeper
-COPY install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
+ADD install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
 RUN cd /usr/local && ln -s zookeeper-3.4.6 zookeeper
 
 # Exhibitor
-COPY install/exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
+ADD install/exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
 RUN cd /usr/local && ln -s exhibitor-1.5.1 exhibitor
 
 # Supervisord

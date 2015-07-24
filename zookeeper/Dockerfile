@@ -14,14 +14,13 @@ COPY *.sh /usr/local/bin/
 ####################################
 
 RUN apt-get update
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:openjdk-r/ppa
-RUN apt-get update
+RUN apt-get install -y software-properties-common git-core wget
 
-# Base
-RUN apt-get install -y git-core wget
-RUN apt-get install -y openjdk-8-jdk
-RUN update-alternatives --config java
+# Java
+RUN add-apt-repository ppa:webupd8team/java -y
+RUN apt-get update
+RUN apt-get install oracle-java8-installer
+RUN apt-get install oracle-java8-set-default
 
 # Zookeeper
 COPY install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6

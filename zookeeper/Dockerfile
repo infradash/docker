@@ -13,7 +13,9 @@ COPY dash /usr/local/bin/
 COPY *.sh /usr/local/bin/
 ####################################
 
-RUN sudo apt-get update
+RUN apt-get update
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update
 
 # Base
 RUN apt-get install -y git-core wget

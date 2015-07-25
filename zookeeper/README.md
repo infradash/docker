@@ -1,3 +1,3 @@
-Nginx Docker Image
-==================
+Zookeeper Docker Image
+======================
 

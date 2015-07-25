@@ -21,20 +21,18 @@ RUN apt-get install -y --no-install-recommends openjdk-7-jdk
 RUN java -version
 
 # Zookeeper
-ADD zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
+ADD install/zookeeper-3.4.6 /usr/local/zookeeper-3.4.6
 RUN cd /usr/local && ln -s zookeeper-3.4.6 zookeeper
 
 # Exhibitor
-ADD exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
+ADD install/exhibitor-1.5.1 /usr/local/exhibitor-1.5.1
 RUN cd /usr/local && ln -s exhibitor-1.5.1 exhibitor
 
 # Supervisord
 RUN apt-get update && apt-get install -y supervisor
-
 # Create directories
 RUN mkdir -p /var/log/supervisor
-
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose volumes.  This allows us to use the image as data containers as well
 VOLUME /usr/local/zookeeper/conf

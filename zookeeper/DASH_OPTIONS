@@ -1,1 +1,1 @@
--daemon -no_source_env -logtostderr
+-exec_only -daemon -no_source_env -logtostderr

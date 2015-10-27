@@ -46,7 +46,7 @@ RUN)
 
 *)
     echo "${DASH_SERVICE} args: $@"
-    exec="dash ${DASH_OPTIONS} -name=${DASH_NAME} -domain=${DASH_DOMAIN} -service=${DASH_SERVICE} -version=${DASH_VERSION} -path=${DASH_PATH} -config_url=${DASH_CONFIG_URL} exec ${DASH_CMD} $@"
+    exec="dash ${DASH_OPTIONS} -name=${DASH_NAME} -domain=${DASH_DOMAIN} -service=${DASH_SERVICE} -version=${DASH_VERSION} -path=${DASH_PATH} -config_url=${DASH_CONFIG_URL} terraform ${DASH_CMD} $@"
     echo $exec
     $exec
 ;;

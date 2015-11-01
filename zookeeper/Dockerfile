@@ -40,5 +40,8 @@ VOLUME /var/log/zookeeper
 VOLUME /var/log/supervisor
 VOLUME /var/zookeeper
 
+# Note ==> A /var/zookeeper/myid file needs to be dynamically generated and
+# mounted to the container in order for the ensemble members to start correctly.
+
 EXPOSE 2181 2888 3888 8080
 CMD ["zookeeper.sh"]

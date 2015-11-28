@@ -26,13 +26,6 @@
 : ${DASH_VERSION:=$(cat /etc/dash/DASH_VERSION)}
 
 
-# If command line is UPGRADE RUN ....  or UPGRADE -option=... then pull down the latest build of valet.
-if [[ $1 == "RESTART" ]]; then
-    shift;
-    ${DASH_CMD} $@
-    exit 0
-fi
-
 
 # If command line is UPGRADE RUN ....  or UPGRADE -option=... then pull down the latest build of valet.
 if [[ $1 == "UPGRADE" ]]; then
@@ -50,6 +43,12 @@ RUN)
     CMD=$@
     echo "RUN [ $CMD ]"
     $CMD
+;;
+
+RESTART)
+    shift;
+    ${DASH_CMD} $@
+    exit 0
 ;;
 
 *)

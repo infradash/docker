@@ -26,4 +26,4 @@ VOLUME /var/build
 VOLUME /var/log
 
 EXPOSE 25658
-CMD ["builder.sh"]
+ENTRYPOINT ["builder.sh"]

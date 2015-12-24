@@ -17,6 +17,8 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common git-core wget make
 RUN apt-get install -y fuse sshfs
 
+# Required to use docker inside container via bind-mount of domain socket
+RUN apt-get install -y lxc
 
 ###########
 RUN mkdir -p /var/build

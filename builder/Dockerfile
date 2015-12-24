@@ -14,7 +14,7 @@ COPY *.sh /usr/local/bin/
 ####################################
 
 RUN apt-get update
-RUN apt-get install -y software-properties-common git-core wget make
+RUN apt-get install -y software-properties-common git-core wget make sshfs
 
 
 ###########

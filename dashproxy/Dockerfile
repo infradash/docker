@@ -6,10 +6,7 @@ FROM busybox
 WORKDIR .
 
 ####################################
-RUN mkdir -p /etc/dash/
-COPY MANIFEST /etc/dash/
-COPY DASH_* /etc/dash/
-COPY dash /usr/local/bin/
+COPY dash /bin/
 ####################################
 
 ###########

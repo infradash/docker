@@ -6,7 +6,7 @@ FROM busybox
 WORKDIR .
 
 ####################################
-COPY dash /bin/
+COPY dash /usr/bin/
 ####################################
 
 ###########
@@ -18,4 +18,4 @@ VOLUME /var/build
 VOLUME /var/log
 
 EXPOSE 8888
-ENTRYPOINT ["dash", "--logtostderr", "proxy"]
+ENTRYPOINT ["/usr/bin/dash", "--logtostderr", "proxy"]

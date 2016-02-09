@@ -1,12 +1,12 @@
 # Builder
 
 # Pull base image.
-FROM busybox
+FROM ubuntu:14.04
 
 WORKDIR .
 
 ####################################
-COPY dash /usr/bin/
+COPY dash /usr/local/bin/
 ####################################
 
 ###########
@@ -18,4 +18,4 @@ VOLUME /var/build
 VOLUME /var/log
 
 EXPOSE 8888
-ENTRYPOINT ["/usr/bin/dash", "--logtostderr", "proxy"]
+ENTRYPOINT ["/usr/local/bin/dash", "--logtostderr", "proxy"]
